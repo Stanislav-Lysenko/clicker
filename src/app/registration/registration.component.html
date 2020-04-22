@@ -1,0 +1,10 @@
+<p>Hello, {{ user.name }}</p>
+<label>Enter your name
+  <input type="text" (input)="changeName($event)" autofocus>
+</label>
+  <div>
+    <button [disabled]="disabled" (click)="showPlayGround()">Start</button>
+  </div>
+
+
+
