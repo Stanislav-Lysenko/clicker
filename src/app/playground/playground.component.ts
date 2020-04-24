@@ -7,6 +7,12 @@ import { User, Config } from '../app.component';
   styleUrls: ['./playground.component.css']
 })
 export class PlaygroundComponent implements OnInit {
+  @Input() user: User;
+  @Input() config: Config;
+
+  statusText = 'Start Game';
+  seconds = 10;
+  run = false;
 
   constructor() {
    }
@@ -14,26 +20,16 @@ export class PlaygroundComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-  @Input() user: User
-  @Input() config: Config
-
-
-  statusText = "Start Game";
-  //seconds = this.config.duration;
-  seconds = 10;
-  run = false;
-
   startTimer() {
     this.renderTime(this.seconds);
   }
 
-  renderTime (seconds) {
+  renderTime(seconds) {
     if (seconds > 0) {
       setTimeout( () => {
-        this.seconds -=1;
+        this.seconds -= 1;
         this.renderTime(this.seconds);
-      }, 1000)
+      }, 1000);
     } else {
       this.stopGame();
     }
@@ -45,7 +41,7 @@ export class PlaygroundComponent implements OnInit {
 
   clickHandler() {
     if (this.run && this.seconds) {
-      this.user.score +=1;
+      this.user.score += 1;
     } else {
       this.startTimer();
       this.changeStatusText();
@@ -54,6 +50,6 @@ export class PlaygroundComponent implements OnInit {
   }
 
   changeStatusText() {
-    this.statusText = "Click";
+    this.statusText = 'Click';
   }
 }
