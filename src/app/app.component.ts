@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 
 export interface User {
-  name: string,
-  score: number
+  name: string;
+  score: number;
 }
 
 export interface Config {
-  play: boolean,
-  duration: number
+  play: boolean;
+  duration: number;
 }
 
 @Component({
@@ -16,15 +16,15 @@ export interface Config {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = "Clicker";
+  title = 'Clicker';
 
   user: User = {
     name: 'dear player',
     score: 0
-  }
+  };
 
   config: Config = {
     play: false,
     duration: 10
-  }
+  };
 }

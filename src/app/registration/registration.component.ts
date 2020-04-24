@@ -7,17 +7,16 @@ import { User, Config } from '../app.component';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  @Input() user: User;
+  @Input() config: Config;
+
+  disabled = true;
 
   constructor() { }
 
   ngOnInit(): void {
 
   }
-
-  @Input() user: User
-  @Input() config: Config;
-
-  disabled = true
 
   changeName({ target }) {
     this.user.name = target.value;
@@ -35,6 +34,6 @@ export class RegistrationComponent implements OnInit {
   showPlayGround() {
     this.config.play = true;
     console.log('start click');
-    //this.startEvent.emit(null);
+    // this.startEvent.emit(null);
   }
 }
