@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { User, Config } from '../app.component';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UsersService } from '../services/users.service';
+import { StateService } from '../services/state.service';
 
 @Component({
   selector: 'app-registration',
@@ -7,33 +9,35 @@ import { User, Config } from '../app.component';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  @Input() user: User;
-  @Input() config: Config;
 
-  disabled = true;
+  name;
+  disabledStartBtn = true;
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private usersService: UsersService,
+    private stateService: StateService) { }
 
   ngOnInit(): void {
 
   }
 
-  changeName({ target }) {
-    this.user.name = target.value;
+  getFilledName({ target }) {
+    this.name = target.value;
     this.checkName();
   }
 
   checkName() {
-    if (this.user.name.length > 3) {
-      this.disabled = false;
+    if (this.name.length > 3) {
+      this.disabledStartBtn = false;
     } else {
-      this.disabled = true;
+      this.disabledStartBtn = true;
     }
   }
 
-  showPlayGround() {
-    this.config.play = true;
-    console.log('start click');
-    // this.startEvent.emit(null);
+  goToPlayPage() {
+    this.usersService.createUser(this.name);
+    this.stateService.isPlayGround();
+    this.router.navigate([`/${this.stateService.getState()}`]);
   }
 }

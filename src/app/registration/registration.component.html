@@ -1,9 +1,10 @@
-<p>Hello, {{ user.name }}</p>
+<h1>Clicker GAME 1.0</h1>
+<p>Hello, dear player</p>
 <label>Enter your name
-  <input type="text" (input)="changeName($event)" autofocus>
+  <input type="text" (input)="getFilledName($event)" autofocus>
 </label>
   <div>
-    <button [disabled]="disabled" (click)="showPlayGround()">Start</button>
+    <button [disabled]="disabledStartBtn" (click)="goToPlayPage()">Start</button>
   </div>
 
 

@@ -1,6 +1,6 @@
 <div class="container">
-  <h1>Clicker GAME 1.0</h1>
-  <ng-container *ngIf="!config.play">
+  <router-outlet></router-outlet>
+  <!-- <ng-container *ngIf="!config.play">
     <app-registration [user]="user" [config]="config">
 
     </app-registration>
@@ -9,5 +9,5 @@
     <app-playground  [user]="user" [config]="config" >
 
     </app-playground>
-  </ng-container>
+  </ng-container> -->
 </div>

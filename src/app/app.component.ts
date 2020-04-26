@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+// import { StateService } from './services/state.service';
 
 export interface User {
   name: string;
@@ -27,4 +28,8 @@ export class AppComponent {
     play: false,
     duration: 10
   };
+  constructor() {
+
+  }
+
 }

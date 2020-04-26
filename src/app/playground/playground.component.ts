@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { User, Config } from '../app.component';
+import { Component, OnInit } from '@angular/core';
+import { StateService } from '../services/state.service';
+import { Router } from '@angular/router';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-playground',
@@ -7,15 +9,16 @@ import { User, Config } from '../app.component';
   styleUrls: ['./playground.component.css']
 })
 export class PlaygroundComponent implements OnInit {
-  @Input() user: User;
-  @Input() config: Config;
-
   statusText = 'Start Game';
   seconds = 10;
   run = false;
+  score = 0;
 
-  constructor() {
-   }
+  constructor(
+    private stateService: StateService,
+    private usersService: UsersService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
   }
@@ -36,12 +39,15 @@ export class PlaygroundComponent implements OnInit {
   }
 
   stopGame() {
+    this.usersService.addScoreToUser(this.score);
+    this.stateService.isResults();
     this.run = false;
+    this.router.navigate([`/${this.stateService.getState()}`]);
   }
 
   clickHandler() {
     if (this.run && this.seconds) {
-      this.user.score += 1;
+      this.score += 1;
     } else {
       this.startTimer();
       this.changeStatusText();
