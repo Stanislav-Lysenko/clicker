@@ -1,0 +1,12 @@
+<p>Your score: {{currentResult}}</p>
+<button (click)="exit()">Exit</button>
+
+<div>
+  <h2>Results of all Users stored in LocalStorage</h2>
+</div>
+<ul>
+  <li *ngFor="let result of results">
+    <strong>{{result.name}}</strong> and  max score <strong>{{result.maxscore}}</strong>
+  </li>
+</ul>
+
